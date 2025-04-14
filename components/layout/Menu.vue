@@ -1,235 +1,396 @@
 <template>
-    <section class="menu-section">
-        <el-menu class="menu" mode="horizontal" :ellipsis="false" :popper-offset="0" popper-class="popper"
-            :popper-append-to-body="false">
-            <el-sub-menu index="1" popper-class="noSub popper">
-                <template #title>
-                    <nuxt-link to="/"><img class="home-logo" src="/img/logo.png" alt=""></nuxt-link>
-                </template>
-            </el-sub-menu>
-            <el-sub-menu index="2">
-                <template #title>TOPBS & IOPBS</template>
-                <nuxt-link to="/message-from-president"> <el-menu-item index="2-1">Message from President</el-menu-item>
+    <section class="top-section">
+        <div class="menu-section" :class="[{ 'menu-section-scroll': isScroll }, { 'is-active': isActive }]">
+            <!-- 測試 -->
+            <div class="hamburger-icon">
+                <div class="container">
+                    <div class="hamburger" :class="{ 'is-active': isActive }" id="hamburger-1" @click="openMenu">
+                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 測試 -->
+
+
+            <div class="logo-box" v-if="!isActive">
+                <nuxt-link class="logo-link" to="/conference-information">
+                    <div class="img-box">
+                        <img class="logo" src="/img/logo.png" alt="">
+                    </div>
+                    <h2>2024 TICBCS</h2>
                 </nuxt-link>
-                <nuxt-link to="/conference-information"> <el-menu-item index="2-2">Conference Information</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/organizing-committee"> <el-menu-item index="2-3">Organizing Committee</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/board-member"> <el-menu-item index="2-4">Board Member</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/download-center"> <el-menu-item index="2-5">Download Center</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/activity-photos"> <el-menu-item index="2-6">Activity Photos</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/venue"> <el-menu-item index="7-3">Venue</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="3" popper-class="noSub popper">
-                <template #title>News</template>
-            </el-sub-menu>
-            <el-sub-menu index="4">
-                <template #title>Program</template>
-                <nuxt-link to="/program-at-a-glance"> <el-menu-item index="4-1">Program at a Glance</el-menu-item>
-                </nuxt-link>
-                <!-- <nuxt-link to="/scientific-program"> <el-menu-item index="3-2">Scientific Progrem</el-menu-item>
-                </nuxt-link> -->
-                <nuxt-link to="/invited-speakers"> <el-menu-item index="4-3">Invited Speakers</el-menu-item>
-                </nuxt-link>
-                <!-- <nuxt-link to="/social-program"> <el-menu-item index="3-4">Social Program</el-menu-item>
-                </nuxt-link> -->
-                <nuxt-link to="/program-book-download"> <el-menu-item index="4-5">Program Book Download</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="5">
-                <template #title>Registration</template>
-                <nuxt-link to="/registration-fee"> <el-menu-item index="5-1">Registration
-                        Fee</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/demo-register"> <el-menu-item index="5-2">Register Now</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="6">
-                <template #title>Abstracts</template>
-                <nuxt-link to="/submission-guidelines"> <el-menu-item index="66-1">Submission Guidelines</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/abstract-submission"> <el-menu-item index="6-2">Abstract Submission</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/award"> <el-menu-item index="6-3">Award</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="7">
-                <template #title>Sponsorship & Exhibition</template>
-                <nuxt-link to="/list-of-sponsors"> <el-menu-item index="7-1">List of Sponsors</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="8">
-                <template #title>General Infomation</template>
-                <nuxt-link to="/accommodation"> <el-menu-item index="8-1">Accommodation</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/video"> <el-menu-item index="8-2">Video</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/transportation"> <el-menu-item index="8-4">Transportation</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="https://www.travel.taipei/en" target="_blank"> <el-menu-item
-                        index="8-5">Travel</el-menu-item>
-                </nuxt-link>
-                <nuxt-link to="/contact-us"> <el-menu-item index="8-6">Contact Us</el-menu-item>
-                </nuxt-link>
-            </el-sub-menu>
-            <el-sub-menu index="9" :class="!isLogin ? 'popper' : ''" @click="headToLogin">
-                <template #title>
-                    <nuxt-link v-if="!isLogin" to="/login">Login</nuxt-link>
-                    <nuxt-link  v-else to="/member-center">Member</nuxt-link>
-                </template>
-                <nuxt-link v-if="isLogin" to="/member-center"> <el-menu-item>Member Center</el-menu-item></nuxt-link>
-                <nuxt-link v-if="isLogin" @click="logout"> <el-menu-item>Logout</el-menu-item></nuxt-link>
-            </el-sub-menu>
-        </el-menu>
+            </div>
+            <div class="other-menu">
+                <nuxt-link to="/conference-information" @click="setActiveItem('conferenceInformation')"
+                    :class="activeClass('conferenceInformation')">會議資訊</nuxt-link>
+                <nuxt-link to="/seminar-registration" @click="setActiveItem('seminarRegistration')"
+                    :class="activeClass('seminarRegistration')">研討會報名</nuxt-link>
+                <nuxt-link to="/credit-application" @click="setActiveItem('creditApplication')"
+                    :class="activeClass('creditApplication')">學分申請</nuxt-link>
+                <div class="item-box">
+                    <nuxt-link to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                        :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
+                    <nuxt-link to="/mascot" @click="setActiveItem('mascot')"
+                        :class="activeClass('mascot')">吉祥物專區</nuxt-link>
+                    <nuxt-link to="/gallery" @click="setActiveItem('gallery')"
+                        :class="activeClass('gallery')">Gallery(2023
+                        TICBCS)</nuxt-link>
+                </div>
+                <div class="menu">
+                    <div class="menu-title" @click="toggleMenu">查看更多<el-icon>
+                            <ElIconArrowDown />
+                        </el-icon></div>
+                    <div class="menu-item-box" v-if="isOpen">
+                        <nuxt-link to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                            :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
+                        <nuxt-link to="/mascot" @click="setActiveItem('mascot')"
+                            :class="activeClass('mascot')">吉祥物專區</nuxt-link>
+                        <nuxt-link to="/gallery" @click="setActiveItem('gallery')"
+                            :class="activeClass('gallery')">Gallery(2023
+                            TICBCS)</nuxt-link>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </section>
 </template>
 
 <script lang="ts" setup>
-const router = useRouter()
-const headToLogin = () => {
-    let url = isLogin.value ? '/member-center' : '/login';
-    router.push(url);
-}
 
-const isLogin = ref(false);
-const validateLogin = () => {
-    let res = localStorage.getItem('Authorization-member');
-    if (res) {
-        isLogin.value = true;
+const isScroll = ref(false)
+
+function handleScroll() {
+    // 獲取滾動到的位置
+    let scrollPositionY = window.scrollY
+    if (scrollPositionY > 0) {
+        isScroll.value = true
+    } else {
+        isScroll.value = false
     }
 }
 
-router.beforeEach(async (to, from, next) => {
-    validateLogin();
-    next();
+const isOpen = ref(false)
+const toggleMenu = () => {
+    isOpen.value = !isOpen.value
+}
+
+const activeItem = ref('conferenceInformation')
+const setActiveItem = (item: string) => {
+    activeItem.value = item
+    isOpen.value = false
+    console.log('activeItem', activeItem.value)
+}
+
+const activeClass = (item: string) => {
+    return activeItem.value === item ? 'active' : ''
+}
+
+/**================================================================ */
+
+const isActive = ref(false);
+const props = defineProps<{
+    isActive: boolean;
+}>();
+
+watch(() => props.isActive, (value) => {
+    isActive.value = value;
 });
 
-const logout = async () => {
-    let res = await CSRrequest.post('/member/logout');
-    if (res.code === 200) {
-        localStorage.removeItem('Authorization-member');
-        isLogin.value = false;
-        router.push('/login');
-    }
+
+const openMenu = () => {
+    isActive.value = !isActive.value;
+    emits('openMenu', isActive.value);
 }
 
-onMounted(() => {
-    validateLogin();
-})
+const closeMenu = () => {
+    isActive.value = false;
+    emits('openMenu', isActive.value);
+}
 
+const emits = defineEmits(['openMenu']);
+
+
+
+
+
+
+
+/**================================================================ */
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+})
 
 </script>
 <style lang="scss" scoped>
-.menu-section {
-    display: flex;
-    justify-content: center;
-    margin-top: 2vw;
+.top-section {
 
-    @media screen and (max-width: 850px) {
-        display: none;
-    }
-
-    .menu {
-        width: 100%;
-        max-width: 100%;
-        background-color: hsla(0, 100%, 100%, 0);
-        border: none;
+    .menu-section {
         display: flex;
-        // justify-content: space-around;
-        font-weight: bold;
-        font-size: 1rem;
-        text-wrap: wrap;
-        text-align: center;
-        color: black;
-        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        z-index: 99;
+        width: 100%;
+        height: 3rem;
+        padding: 0.8rem;
 
-        .el-sub-menu {
+        &.is-active {
+            width: 10%;
+            height: 2.5rem;
+        }
+
+        .logo-box {
+            width: 35%;
             height: 100%;
-            width: calc(100% / 9.5);
-            ;
-            box-sizing: border-box;
 
-            .home-logo {
-                width: 7vw;
+            .logo-link {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                display: flex;
+                text-align: center;
+                justify-content: start;
+                align-items: center;
+                gap: 0.8rem;
+
+                .img-box {
+                    width: 7rem;
+
+                    .logo {
+                        width: 100%;
+                        height: 100%;
+                        // max-width: 4rem;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                h2 {
+                    font-size: 1.5rem;
+                    color: #59413C;
+                    font-weight: bold;
+
+                    @media screen and (max-width: 426px) {
+                        display: none;
+
+                    }
+                }
+            }
+
+            @media screen and (max-width: 426px) {
+                margin-left: 1rem;
+                ;
+            }
+        }
+
+        .other-menu {
+            width: 65%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 1.5rem;
+            gap: 1.5rem;
+
+            @media screen and (max-width: 426px) {
+                display: none;
+            }
+
+            .active {
+                color: black;
+            }
+
+            .item-box {
+                display: flex;
+                gap: 1.5rem;
+            }
+
+            .menu {
+                display: none;
+                font-size: 1rem;
+                color: #59413C;
+                text-decoration: none;
+
+                .menu-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.1rem;
+                }
+
+                .menu-item-box {
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 4.3rem;
+                    right: 0;
+                    background-color: black;
+                    padding: 1rem 1.5rem;
+                    border-radius: 0.5rem;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+
+                    .active {
+                        color: #FF5529;
+                    }
+
+                    a {
+                        margin-bottom: 1rem;
+                        color: white;
+
+                        &:active {
+                            color: #FF5529; // Change to your desired hover color
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
             }
 
 
             a {
-                color: black;
+                font-size: 1rem;
+                color: #59413C;
+                text-decoration: none;
+
+                &:hover {
+                    cursor: pointer;
+                    color: black; // Change to your desired hover color
+                }
             }
 
 
-            :deep(.el-sub-menu__title) {
-                width: 100%;
-                // padding: 0 1%;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                white-space: pre-wrap;
-                border-bottom: none;
 
-                line-height: normal;
-                color: black;
-                height: 100%;
+            @media screen and (max-width: 769px) {
+                width: 70%;
 
-                i {
+                .item-box {
                     display: none;
                 }
 
-
-                &.is-active {
-                    border-bottom: none;
-                    background-color: $main-color;
-                    color: white;
+                .menu {
+                    display: flex;
+                    ;
                 }
-
             }
-
         }
 
-        .el-sub-menu:not(:first-of-type) {
 
-            // :deep(.el-sub-menu__title) {
-            &:hover {
-                background-color: $main-color;
+
+    }
+
+    .menu-section-scroll {
+        background-color: black;
+        transition: background-color 0.3s ease-in-out;
+
+
+        .logo-box {
+
+            .logo-link {
+
+
+                h2 {
+                    color: white;
+                }
+            }
+        }
+
+        .other-menu {
+            a {
                 color: white;
 
-                a {
-                    color: white;
-                }
-
-                :deep(.el-sub-menu__title) {
-                    background-color: $main-color;
-                    color: white;
-
-                    a {
-                        color: white;
-                    }
-
+                &:hover {
+                    cursor: pointer;
+                    color: #FF5529;
                 }
             }
 
-            // }
-        }
+            .active {
+                color: #FF5529;
+            }
 
-        .el-sub-menu:not(:first-of-type):not(:last-of-type) {
-            border-right: 1px solid gainsboro;
+            .menu {
+                font-size: 1rem;
+                color: white;
+                text-decoration: none;
 
-        }
+                .menu-item-box {
+                    .active {
+                        color: #FF5529 !important;
+                    }
+                }
 
-        :deep(.el-menu-item) {
-            height: 100%;
-            width: 100%;
-            line-height: normal;
-            margin: 0 0.5rem;
-
+            }
         }
     }
 
+
+    // 測試
+    .hamburger-icon {
+        display: none;
+
+        .hamburger .line {
+            width: 1.5rem;
+            height: 3px;
+            background-color: #000;
+            margin-top: 5px;
+            display: block;
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+
+
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.is-scroll {
+                background-color: white !important;
+            }
+        }
+
+        #hamburger-1.is-active .line:nth-child(2) {
+            background-color: white;
+            opacity: 0;
+        }
+
+        #hamburger-1.is-active .line:nth-child(1) {
+            background-color: white;
+            transform: 0.5s;
+
+            rotate: 360deg;
+            -webkit-transform: translateY(7.9px) rotate(47deg);
+            -ms-transform: translateY(7.9px) rotate(47deg);
+            -o-transform: translateY(7.9px) rotate(47deg);
+            transform: translateY(7.9px) rotate(47deg);
+            border-radius: 3px;
+        }
+
+        #hamburger-1.is-active .line:nth-child(3) {
+            background-color: white;
+            transform: 0.5s;
+            rotate: 360deg;
+
+
+            -webkit-transform: translateY(-8.4px) rotate(-47deg);
+            -ms-transform: translateY(-8.4px) rotate(-47deg);
+            -o-transform: translateY(-8.4px) rotate(-47deg);
+            transform: translateY(-8.4px) rotate(-47deg);
+            border-radius: 3px;
+        }
+
+        @media screen and (max-width: 468px) {
+            display: block;
+
+
+
+        }
+
+    }
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
      <div class="title-section">
                 <p class="title">
-                    {{ props.title }}
+                    <!-- {{ props.title }} -->
+                      Coming Soon
                 </p>
             </div>
 </template>

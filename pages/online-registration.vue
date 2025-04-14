@@ -2,14 +2,14 @@
     <main class="common-section">
         <Banner />
         <Breadcrumbs :first-route="'Registration'" :secound-route="'Online Registration'" />
-        <div class="title-section">
+        <Title :title="'Online Registration'" />
+        <!-- <div class="title-section">
             <p class="title">
                 Online Registration
             </p>
         </div>
 
         <div class="select-section">
-            <!-- <img src="assets\img\topbs_background-image.jpg" alt=""> -->
             <div class="select-box">
                 <el-radio-group v-model="attendeeType" class="radio-group">
                     <el-radio class="radio-item" value="1" border>Oversea Attendee</el-radio>
@@ -19,13 +19,15 @@
                     Next
                 </nuxt-link>
             </div>
-        </div>
+        </div> -->
     </main>
 </template>
 
 <script lang="ts" setup>
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Banner from '@/components/layout/Banner.vue';
+import Title from '@/components/layout/Title.vue';
+
 
 let attendeeType = ref('1');
 </script>

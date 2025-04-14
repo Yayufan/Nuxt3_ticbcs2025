@@ -1,6 +1,8 @@
 <template>
     <main class="common-section">
-        <el-carousel class="carousel-section" arrow="always" trigger="click">
+        <Breadcrumbs :first-route="'Home'"  :secound-route="''"/>
+        <Title :title="'Coming soon'" />
+        <!-- <el-carousel class="carousel-section" arrow="always" trigger="click">
             <img class="home-banner-bak" src="@/assets/img/home_banner@2x.png" alt="">
             <el-carousel-item>
                 <img src="@/assets/img/home_photo1@2x.png" alt="">
@@ -17,7 +19,6 @@
         </el-carousel>
 
         <div class="countdown-timer-section">
-            <!-- {{ countdown }} -->
             <div class="countdown-timer" v-html="countdown"></div>
         </div>
         <div class="video-banner">
@@ -25,10 +26,13 @@
         </div>
         <div class="video">
             <video src="@/assets/movie/promotionalVideo.mp4" controls></video>
-        </div>
+        </div> -->
     </main>
 </template>
 <script lang="ts" setup>
+import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+import Title from '~/components/layout/Title.vue';
+
 
 const countdown = ref('');
 
@@ -61,6 +65,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .common-section {
     font-family: $common-section-font-family;
+    min-height: 60vw;
     
     .el-carousel {
         // margin-top: 2rem;

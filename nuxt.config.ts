@@ -28,9 +28,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8', //預設,不設置也行
       viewport: 'width=device-width, initial-scale=1',  //預設,不設置也行
-      title: 'TOPBS & IOPBS 2025',
+      title: 'TICBCS 2025',
       meta: [
-        { name: 'keyword', content: "TOPBS、IOPBS" },
+        { name: 'keyword', content: "TICBCS" },
         { name: 'description', content: "" }
       ],
       //引入第三方外部css可能會用到

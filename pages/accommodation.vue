@@ -1,7 +1,10 @@
 <template>
     <div>
         <main class="common-section">
-            <div class="banner-box">
+            <Banner/>
+            <Breadcrumbs :first-route="'Accommodation'" :secound-route="'Recommended Hotels'"/>
+            <Title :title="'Recommended Hotels'"/>
+            <!-- <div class="banner-box">
                 <img src="../assets//img/banner.png" alt="">
             </div>
             <div class="title-section">
@@ -71,13 +74,15 @@
 
                     </div>
                 </el-card>
-            </div>
+            </div> -->
 
         </main>
 
     </div>
 </template>
 <script setup lang="ts">
+import Banner from '@/components/layout/Banner.vue';
+import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 </script>
 <style lang="scss" scoped>
