@@ -48,7 +48,7 @@ let attendeeType = ref('1');
     }
 
     .select-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         width: 100vw;
         display: flex;
         justify-content: center;

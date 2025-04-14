@@ -117,7 +117,7 @@ onMounted(() => {
     font-family: $common-section-font-family;
 
     .main-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         display: flex;
         justify-content: center;
         align-items: center;
