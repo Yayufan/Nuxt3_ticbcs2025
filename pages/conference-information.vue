@@ -80,7 +80,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: start;
+            align-items: flex-start;
             font-size: 1.5rem;
             line-height: 2rem;
             gap: 1rem;
@@ -149,7 +149,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: start;
+        align-items: flex-start;
         width: 100%;
         padding: 2.5rem 0;
         border-width: 0px 0 1px 0;

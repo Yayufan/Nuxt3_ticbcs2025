@@ -3,7 +3,7 @@
         <div class="mobile-menu">
             <ol>
                 <div v-for="item in menu">
-                    <li @click="router.push(item.path)" :class="activeClass(item.path)">
+                    <li @click="handleClick(item.path)" :class="activeClass(item.path)">
                         {{ item.title }}
                     </li>
                     <!-- <li @click="item.isActive = !item.isActive">
@@ -49,6 +49,14 @@ const activeClass = (item: string) => {
 
 const router = useRouter()
 console.log('router', router.currentRoute.value.path);
+
+const handleClick = (path: string) => {
+    router.push(path)
+    closeMenu()
+}
+
+
+
 const headToLogin = () => {
     closeMenu();
     let url = isLogin.value ? '/member-center' : '/login';

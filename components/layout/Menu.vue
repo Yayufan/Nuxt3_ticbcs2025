@@ -16,7 +16,7 @@
 
 
             <div class="logo-box" v-if="!isActive">
-                <nuxt-link class="logo-link" to="/conference-information">
+                <nuxt-link class="logo-link" to="/conference-information" @click="setActiveItem('conferenceInformation')">
                     <div class="img-box">
                         <img class="logo" src="/img/logo.png" alt="">
                     </div>
@@ -153,7 +153,7 @@ onMounted(() => {
                 cursor: pointer;
                 display: flex;
                 text-align: center;
-                justify-content: start;
+                justify-content: flex-start;
                 align-items: center;
                 gap: 0.8rem;
 
@@ -174,16 +174,15 @@ onMounted(() => {
                     color: #59413C;
                     font-weight: bold;
 
-                    @media screen and (max-width: 426px) {
+                    @media screen and (max-width: 468px) {
                         display: none;
 
                     }
                 }
             }
 
-            @media screen and (max-width: 426px) {
-                margin-left: 1rem;
-                ;
+            @media screen and (max-width: 468px) {
+                margin-left: 1rem;;
             }
         }
 
@@ -195,7 +194,7 @@ onMounted(() => {
             padding-right: 1.5rem;
             gap: 1.5rem;
 
-            @media screen and (max-width: 426px) {
+            @media screen and (max-width: 468px) {
                 display: none;
             }
 
@@ -384,7 +383,7 @@ onMounted(() => {
             border-radius: 3px;
         }
 
-        @media screen and (max-width: 468px) {
+        @media screen and (max-width: 469px) {
             display: block;
 
 

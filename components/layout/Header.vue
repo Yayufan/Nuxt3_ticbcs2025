@@ -1,7 +1,8 @@
 <template>
     <header class="header">
         <div class="title" v-if="title != ''">
-            {{ title }}
+            <p>{{ title.split('(')[0] }}</p>
+            <p>{{ title.split('y')[1] }}</p>
         </div>
         <!-- <div class="hamburger-icon">
             <div class="container">
@@ -36,7 +37,7 @@ watch(() => router.currentRoute.value.path, (value) => {
             title.value = '吉祥物專區';
             break;
         case '/gallery':
-            title.value = 'Gallery(2023 TICBCS)';
+            title.value = 'Gallery (2023 TICBCS)';
             break;
         default:
             title.value = '';
@@ -105,7 +106,9 @@ onMounted(() => {
         background-color: rgba(211, 211, 211, 0.3);
         width: 100%;
         // opacity: 0.6;
+        border: 1px solid red;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         font-size: 4rem;
