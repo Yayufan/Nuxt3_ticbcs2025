@@ -89,9 +89,6 @@ const logout = async () => {
 </script>
 <style lang="scss" scoped>
 
-.mobile-section {
-}
-
 .mobile-menu {
     background-color: black;
     height: 100vh;
