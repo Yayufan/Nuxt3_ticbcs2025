@@ -4,11 +4,11 @@
 
     <!-- 共用的Header -->
     <Header @open-menu="openMenu" :isActive="isActive"></Header>
-    <Menu class="menu-bar"></Menu>
+    <Menu class="menu-bar" @open-menu="openMenu" :isActive="isActive"></Menu>
+    <MobileMenu class="mobile-menu" v-if="isActive" @close-menu="closeMenu"></MobileMenu>
     <!-- 先用一個main標籤將之後要顯示的路由組件包起來 -->
     <main class="content" :class="{'is-open': isActive}">
-      <NuxtPage v-if="!isActive"></NuxtPage>
-      <MobileMenu class="mobile-menu" v-if="isActive" @close-menu="closeMenu"></MobileMenu>
+      <NuxtPage></NuxtPage>
     </main>
 
     <!-- 共用的Footer -->
@@ -132,7 +132,6 @@ function handleScroll() {
   }
 
   .is-open {
-    background-color: #F0F0F0;
   }
 
 }

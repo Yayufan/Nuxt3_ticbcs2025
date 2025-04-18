@@ -8,19 +8,19 @@
 
         <div class="select-section">
             <div class="select-box">
-                <img src="../assets/img/abstract-icon.png" alt="">
+                <!-- <img src="../assets/img/abstract-icon.png" alt=""> -->
                 <div class="label-box">
                     <span>Abstract</span>
                 </div>
             </div>
             <nuxt-link class="select-box" :to="'/payment'">
-                <img src="../assets/img/payment-icon.png" alt="">
+                <!-- <img src="../assets/img/payment-icon.png" alt=""> -->
                 <div class="label-box">
                     <span>Payment</span>
                 </div>
             </nuxt-link>
             <div class="select-box">
-                <img src="../assets/img/accommodation-icon.png" alt="">
+                <!-- <img src="../assets/img/accommodation-icon.png" alt=""> -->
                 <div class="label-box">
                     <p>Accommodation </p>
                     <p>Offers</p>
@@ -50,7 +50,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
     }
 
     .select-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         // width: 100vw;
         display: flex;
         justify-content: center;

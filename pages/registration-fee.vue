@@ -1,12 +1,11 @@
 <template>
-    <div>
         <main class="common-section">
             <Banner />
 
-            <Breadcrumbs firstRoute="Registration" secoundRoute="Registration Guidelines"></Breadcrumbs>
+            <Breadcrumbs firstRoute="Registration" secoundRoute="Registration Fee"></Breadcrumbs>
 
            <Title :title="'Registration Fee'"></Title>
-            <table class="personal-registration-table">
+            <!-- <table class="personal-registration-table">
                 <tr class="personal-row-1">
                     <th class="category-col" :rowspan="2" :colspan="2">Category</th>
                     <th :colspan="2">Only Physical</th>
@@ -90,10 +89,9 @@
             <p class="tips">*Payment for group registration must be paid at once by one person.</p>
                 <div class="btn-section"> <nuxt-link class="group-register-btn" to="/registration-now/group-registration">Group Registration Form</nuxt-link>
 
-            </div>
+            </div> -->
         </main>
 
-    </div>
 </template>
 <script setup lang="ts">
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'

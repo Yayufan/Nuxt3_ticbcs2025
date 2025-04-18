@@ -1,34 +1,23 @@
 <template>
-    <div class="mobile-menu">
-        <ol>
-            <div>
-                <li>
-                   <nuxt-link to="/" @click="closeMenu"> <img src="/img/bugle.svg" alt="">
-                    Home</nuxt-link>
-                </li>
-            </div>
-            <div v-for="item in menu">
-                <li @click="item.isActive = !item.isActive">
-                    <img :src="'/img/' + item.icon" alt="">
-                    {{ item.title }}
-                    <img v-if="item.submenu" class="arrow" :class="{ 'is-active': item.isActive }"
-                        src="/img/chevron-down.svg" alt="">
-                </li>
-                <div class="submenu" :class="{ 'is-open': item.isActive }">
-                    <nuxt-link v-for="submenu in item.submenu" :to="submenu.link" @click="closeMenu">{{ submenu.title }}</nuxt-link>
+    <div class="mobile-section">
+        <div class="mobile-menu">
+            <ol>
+                <div v-for="item in menu">
+                    <li @click="handleClick(item.path)" :class="activeClass(item.path)">
+                        {{ item.title }}
+                    </li>
+                    <!-- <li @click="item.isActive = !item.isActive">
+                        {{ item.title }}
+                    </li> -->
                 </div>
-            </div>
-            <div>
-                <li @click="headToLogin">
-                    <img src="/img/book.svg" alt="">
-                    <span v-if="!isLogin">Login</span>
-                    <span v-else @click="logout">Logout</span>
-                </li>
-            </div>
-        </ol>
+            </ol>
+        </div>
+        <div class="gray-section" @click="closeMenu"></div>
+
     </div>
 </template>
 <script lang="ts" setup>
+
 
 
 const emits = defineEmits(['closeMenu']);
@@ -38,60 +27,36 @@ const closeMenu = () => {
 }
 
 const menu = reactive([
-    {
-        title: 'TOPBS & IOPBS', icon: 'bulb.svg', isActive: false, submenu: [
-            { title: 'Message from President', link: '/message-from-president' },
-            { title: 'Conference Information', link: '/conference-information' },
-            { title: 'Organizing Committee', link: '/organizing-committee' },
-            { title: 'Board Member', link: '/board-member' },
-            { title: 'Download Center', link: '/download-center' },
-            { title: 'Activity Photos', link: '/activity-photos' },
-        ]
-    },
-    {
-        title: 'Program', icon: 'cloud.svg', isActive: false, submenu: [
-            { title: 'Program at a Galance', link: '/program-at-a-glance' },
-            { title: 'Scientific Program', link: '/scientific-program' },
-            { title: 'Social Program', link: '/social-program' },
-            { title: 'Invited Speakers', link: '/invited-speakers' },
-            { title: 'Program Book Download', link: '/program-book-download' },
+    { title: '會議資訊', path: '/conference-information', isActive: false },
+    { title: '研討會報名', path: '/seminar-registration',isActive: false },
+    { title: '學分申請',path: '/credit-application', isActive: false },
+    { title: '贊助廠商', path: '/sponsor-list',isActive: false },
+    { title: '吉祥物專區', path: '/mascot',isActive: false },
+    { title: 'Gallery(2023 TICBCS)', path: '/gallery', isActive: false },
 
-
-        ]
-    },
-    {
-        title: 'Registration', icon: 'calendar.svg', isActive: false, submenu: [
-            { title: 'Registration Fee', link: '/registration-fee' },
-            { title: 'Register Now', link: '/demo-register' },
-
-        ]
-    },
-    {
-        title: 'Call for Abstract', icon: 'bachelor-cap.svg', isActive: false, submenu: [
-            { title: 'Submission Guidelines', link: '/submission-guidelines' },
-            { title: 'Abstract Submission', link: '/abstract-submission' },
-
-        ]
-    },
-    {
-        title: 'Sponsorship', icon: 'quill.svg', isActive: false, submenu: [
-            { title: 'List of Sponsors', link: '/list-of-sponsors' },
-        ]
-    },
-    {
-        title: 'General Information', icon: 'shop.svg', isActive: false, submenu: [
-            { title: 'Accommodation', link: '/accommodation' },
-            { title: 'Video', link: '/video' },
-            { title: 'Venue', link: '/venue' },
-            { title: 'Transportation', link: '/transportation' },
-            { title: 'Travel', link: 'https://www.travel.taipei/en' },
-            { title: 'Contact Us', link: '/contact-us' },
-        ]
-    }
 ])
 
 
+const activeItem = ref('')
+const setActiveItem = (item: any) => {
+    item.isActive = !item.isActive
+    activeItem.value = item.title
+}
+
+const activeClass = (item: string) => {
+    return router.currentRoute.value.path === item ? 'active' : ''
+}
+
 const router = useRouter()
+console.log('router', router.currentRoute.value.path);
+
+const handleClick = (path: string) => {
+    router.push(path)
+    closeMenu()
+}
+
+
+
 const headToLogin = () => {
     closeMenu();
     let url = isLogin.value ? '/member-center' : '/login';
@@ -120,28 +85,30 @@ const logout = async () => {
     }
 }
 
-onMounted(() => {
-    validateLogin();
-})
 
 </script>
 <style lang="scss" scoped>
+
 .mobile-menu {
-    background-color: #F0F0F0;
-    width: 100%;
-    border-top: 8px solid $main-color;
+    background-color: black;
+    height: 100vh;
+    width: 60%;
+    position: fixed;
+    top: 0rem;
+    left: 0rem;
+    z-index: 10;
+    transition: 0.5s;
+
 
     ol {
         list-style: none;
-        padding: 0;
-        margin-left: 6vw;
-        margin-top: 3rem;
+        padding: 2rem 2rem;
 
         li {
             padding: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: $main-content-color;
+            color: white;
 
             img {
                 width: 1.5rem;
@@ -164,6 +131,11 @@ onMounted(() => {
 
             &:hover {
                 cursor: pointer;
+            }
+
+            &.active {
+                color: #FF5529;
+                border-radius: 10px;
             }
         }
 
@@ -189,5 +161,16 @@ onMounted(() => {
             }
         }
     }
+}
+
+.gray-section {
+    background-color: #F0F0F0;
+    opacity: 0.5;
+    height: 100vh;
+    width: 40%;
+    position: fixed;
+    top: 0rem;
+    right: 0rem;
+    z-index: 10;
 }
 </style>

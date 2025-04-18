@@ -1,20 +1,8 @@
 <template>
     <header class="header">
-        <div class="hamburger-icon">
-            <div class="container">
-                <div class="hamburger" :class="{ 'is-active': isActive }" id="hamburger-1" @click="openMenu">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                </div>
-
-            </div>
-        </div>
-        <!-- <div class="logo-section">
-            <nuxt-link to="/"><img src="/img/logo.png" alt="" @click="closeMenu"></nuxt-link>
-        </div> -->
-        <div class="user-icon" @click="headToMemberCenter">
-            <img src="/img/user.svg" alt="" >
+        <div class="title" v-if="title != ''">
+            <p>{{ title.split('(')[0] }}</p>
+            <p>{{ title.split('y')[1] }}</p>
         </div>
     </header>
 </template>
@@ -22,6 +10,30 @@
 
 
 const router = useRouter();
+
+const title = ref('');
+watch(() => router.currentRoute.value.path, (value) => {
+    switch (value) {
+        case '/seminar-registration':
+            title.value = '研討會報名';
+            break;
+        case '/credit-application':
+            title.value = '學分申請';
+            break;
+        case '/sponsor-list':
+            title.value = '贊助廠商';
+            break;
+        case '/mascot':
+            title.value = '吉祥物專區';
+            break;
+        case '/gallery':
+            title.value = 'Gallery (2023 TICBCS)';
+            break;
+        default:
+            title.value = '';
+            break;
+    }
+});
 
 const isActive = ref(false);
 const props = defineProps<{
@@ -32,23 +44,21 @@ watch(() => props.isActive, (value) => {
     isActive.value = value;
 });
 
+const isScroll = ref(false)
 
-const openMenu = () => {
-    isActive.value = !isActive.value;
-    emits('openMenu', isActive.value);
+function handleScroll() {
+    // 獲取滾動到的位置
+    let scrollPositionY = window.scrollY
+    if (scrollPositionY > 0) {
+        isScroll.value = true
+    } else {
+        isScroll.value = false
+    }
 }
 
-const closeMenu = () => {
-    isActive.value = false;
-    emits('openMenu', isActive.value);
-}
-
-const emits = defineEmits(['openMenu']);
-
-const headToMemberCenter = () => {
-    console.log('headToMemberCenter');
-    router.push('/member-center');
-}
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+})
 
 
 </script>
@@ -56,85 +66,23 @@ const headToMemberCenter = () => {
 .header {
     display: flex;
     justify-content: center;
+    align-items: center;
+    background: url('/img/ticbcsBanner.png') no-repeat center center;
+    background-size: cover;
+    min-height: 32.5rem;
+    width: 100%;
+    z-index: 9;
 
-    .logo-section {
-        width: 7vw;
-        min-width: 100px;
-
-        img {
-            width: 100%;
-        }
-    }
-    
-    .hamburger-icon {
-        position: absolute;
-        left: 0;
-        top: 0.8vw;
-        display: none;
-        padding: 20px;
-        z-index: 9999;
-
-        .hamburger .line {
-            width: 1.5rem;
-            height: 3px;
-            background-color: #000;
-            margin-top: 5px;
-            display: block;
-            -webkit-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        #hamburger-1.is-active .line:nth-child(2) {
-            opacity: 0;
-        }
-
-        #hamburger-1.is-active .line:nth-child(1) {
-            -webkit-transform: translateY(7.9px) rotate(47deg);
-            -ms-transform: translateY(7.9px) rotate(47deg);
-            -o-transform: translateY(7.9px) rotate(47deg);
-            transform: translateY(7.9px) rotate(47deg);
-            border-radius: 3px;
-        }
-
-        #hamburger-1.is-active .line:nth-child(3) {
-            -webkit-transform: translateY(-8.4px) rotate(-47deg);
-            -ms-transform: translateY(-8.4px) rotate(-47deg);
-            -o-transform: translateY(-8.4px) rotate(-47deg);
-            transform: translateY(-8.4px) rotate(-47deg);
-            border-radius: 3px;
-        }
-
+    .title {
+        background-color: rgba(211, 211, 211, 0.3);
+        width: 100%;
+        min-height: 32.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
     }
 
-    .user-icon {
-        width: 2rem;
-        position: absolute;
-        display: none;
-        right: 4rem;
-        top: 2.1rem;
-        z-index: 10;
-
-        img {
-            width: 100%;
-        }
-    }
-
-
-
-    @media screen and (max-width: 850px) {
-        .hamburger-icon {
-            display: block;
-        }
-
-        .user-icon {
-            display: block;
-        }
-
-    }
 }
 </style>

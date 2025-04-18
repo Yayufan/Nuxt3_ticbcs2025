@@ -3,7 +3,7 @@
         <Banner />
         <Breadcrumbs :first-route="'Member'" :secound-route="'Member login'" />
         <Title :title="'Member Login'" />
-        <div class="main-section">
+        <!-- <div class="main-section">
             <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule">
                 <el-form-item class="login-input" prop="email">
                     <el-input v-model="loginInfo.email" placeholder="Email">
@@ -39,7 +39,7 @@
                     <nuxt-link :to="'registration-fee'">Sign up</nuxt-link>
                 </div>
             </el-form>
-        </div>
+        </div> -->
     </main>
 </template>
 <script lang="ts" setup>
@@ -117,7 +117,7 @@ onMounted(() => {
     font-family: $common-section-font-family;
 
     .main-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         display: flex;
         justify-content: center;
         align-items: center;

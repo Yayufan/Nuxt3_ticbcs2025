@@ -1,22 +1,19 @@
 <template>
     <div>
         <main class="common-section">
-            <h1 class="title">Download Center</h1>
-            <Breadcrumbs firstRoute="TOPBS & IOPBS" secoundRoute="Download Center"></Breadcrumbs>
-            <div class="content">
-                <h1 class="">Page Under Construction</h1>
-            </div>
+            <Breadcrumbs firstRoute="TICBCS"secoundRoute="Download Center"></Breadcrumbs>
+            <Title title="Download Center"></Title>
         </main>
 
     </div>
 </template>
 <script setup lang="ts">
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
+import Title from '@/components/layout/Title.vue';
+
 </script>
 <style lang="scss" scoped>
 .common-section {
-    width: $common-section-width;
-    margin: $common-section-margin;
     font-family: $common-section-font-family;
 
     .title {
