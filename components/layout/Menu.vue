@@ -1,7 +1,7 @@
 <template>
     <section class="top-section">
-        <div class="menu-section" :class="[{ 'menu-section-scroll': isScroll }, { 'is-active': isActive }]">
-            <!-- 測試 -->
+        <div class="menu-container" :class="[{ 'menu-section-scroll': isScroll }, { 'is-active': isActive }]">
+
             <div class="hamburger-icon">
                 <div class="container">
                     <div class="hamburger" :class="{ 'is-active': isActive }" id="hamburger-1" @click="openMenu">
@@ -9,50 +9,53 @@
                         <span class="line" :class="{ 'is-scroll': isScroll }"></span>
                         <span class="line" :class="{ 'is-scroll': isScroll }"></span>
                     </div>
-
                 </div>
             </div>
-            <!-- 測試 -->
 
-
-            <div class="logo-box" v-if="!isActive">
-                <nuxt-link class="logo-link" to="/conference-information" @click="setActiveItem('conferenceInformation')">
-                    <div class="img-box">
-                        <img class="logo" src="/img/logo.png" alt="">
+            <div class="logo-container" v-if="!isActive">
+                <nuxt-link class="logo-link" to="/conference-information"
+                    @click="setActiveItem('conferenceInformation')">
+                    <div class="logo-image-box">
+                        <img class="logo" src="/img/logo.png" alt="TICBCS Logo" />
                     </div>
-                    <h2>2024 TICBCS</h2>
+                    <h2 class="logo-title">2025 TICBCS</h2>
                 </nuxt-link>
             </div>
-            <div class="other-menu">
-                <nuxt-link to="/conference-information" @click="setActiveItem('conferenceInformation')"
+
+            <div class="menu-box">
+
+                <nuxt-link class="menu-item" to="/conference-information"
+                    @click="setActiveItem('conferenceInformation')"
                     :class="activeClass('conferenceInformation')">會議資訊</nuxt-link>
-                <nuxt-link to="/seminar-registration" @click="setActiveItem('seminarRegistration')"
+                <nuxt-link class="menu-item" to="/seminar-registration" @click="setActiveItem('seminarRegistration')"
                     :class="activeClass('seminarRegistration')">研討會報名</nuxt-link>
-                <nuxt-link to="/credit-application" @click="setActiveItem('creditApplication')"
+                <nuxt-link class="menu-item" to="/credit-application" @click="setActiveItem('creditApplication')"
                     :class="activeClass('creditApplication')">學分申請</nuxt-link>
+
                 <div class="item-box">
-                    <nuxt-link to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                    <nuxt-link class="menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
                         :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
-                    <nuxt-link to="/mascot" @click="setActiveItem('mascot')"
+                    <nuxt-link class="menu-item" to="/mascot" @click="setActiveItem('mascot')"
                         :class="activeClass('mascot')">吉祥物專區</nuxt-link>
-                    <nuxt-link to="/gallery" @click="setActiveItem('gallery')"
+                    <nuxt-link class="menu-item" to="/gallery" @click="setActiveItem('gallery')"
                         :class="activeClass('gallery')">Gallery(2023
                         TICBCS)</nuxt-link>
                 </div>
-                <div class="menu">
-                    <div class="menu-title" @click="toggleMenu">查看更多<el-icon>
+
+                <div class="sub-menu-box">
+                    <div class="sub-menu-title" @click="toggleMenu">查看更多<el-icon>
                             <ElIconArrowDown />
                         </el-icon></div>
-                    <div class="menu-item-box" v-if="isOpen">
-                        <nuxt-link to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                    <div class="sub-menu-item-box" v-if="isOpen">
+                        <nuxt-link class="sub-menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
                             :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
-                        <nuxt-link to="/mascot" @click="setActiveItem('mascot')"
+                        <nuxt-link class="sub-menu-item" to="/mascot" @click="setActiveItem('mascot')"
                             :class="activeClass('mascot')">吉祥物專區</nuxt-link>
-                        <nuxt-link to="/gallery" @click="setActiveItem('gallery')"
-                            :class="activeClass('gallery')">Gallery(2023
-                            TICBCS)</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/gallery" @click="setActiveItem('gallery')"
+                            :class="activeClass('gallery')">Gallery(2023TICBCS)</nuxt-link>
                     </div>
                 </div>
+
             </div>
 
 
@@ -62,10 +65,9 @@
 
 <script lang="ts" setup>
 
+// 偵測滾輪位置，更換 menu 背景色
 const isScroll = ref(false)
-
 function handleScroll() {
-    // 獲取滾動到的位置
     let scrollPositionY = window.scrollY
     if (scrollPositionY > 0) {
         isScroll.value = true
@@ -129,7 +131,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .top-section {
 
-    .menu-section {
+    .menu-container {
         display: flex;
         position: fixed;
         top: 0;
@@ -143,7 +145,7 @@ onMounted(() => {
             height: 2.5rem;
         }
 
-        .logo-box {
+        .logo-container {
             width: 35%;
             height: 100%;
 
@@ -157,46 +159,44 @@ onMounted(() => {
                 align-items: center;
                 gap: 0.8rem;
 
-                .img-box {
+                .logo-image-box {
                     width: 7rem;
 
                     .logo {
                         width: 100%;
                         height: 100%;
-                        // max-width: 4rem;
                         object-fit: cover;
                         object-position: center;
                     }
                 }
+                
 
-                h2 {
+                .logo-title {
                     font-size: 1.5rem;
                     color: #59413C;
-                    font-weight: bold;
-
-                    @media screen and (max-width: 468px) {
-                        display: none;
-
-                    }
                 }
             }
 
             @media screen and (max-width: 468px) {
-                margin-left: 1rem;;
+                margin-left: 1rem;
+            }
+
+            @media screen and (max-width: 769px) {
+                .logo-title {
+                    display: none;
+                }
             }
         }
 
-        .other-menu {
+        .menu-box {
             width: 65%;
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding-right: 1.5rem;
             gap: 1.5rem;
+            font-size: 1rem;
 
-            @media screen and (max-width: 468px) {
-                display: none;
-            }
 
             .active {
                 color: black;
@@ -207,24 +207,35 @@ onMounted(() => {
                 gap: 1.5rem;
             }
 
-            .menu {
-                display: none;
-                font-size: 1rem;
+            .menu-item {
                 color: #59413C;
                 text-decoration: none;
 
-                .menu-title {
+                &:hover {
+                    cursor: pointer;
+                    color: black;
+                }
+            }
+
+            .sub-menu-box {
+                display: none;
+                color: #59413C;
+                text-decoration: none;
+                position: relative;
+
+                .sub-menu-title {
                     display: flex;
                     align-items: center;
                     gap: 0.1rem;
                 }
 
-                .menu-item-box {
+                .sub-menu-item-box {
                     display: flex;
                     flex-direction: column;
                     position: absolute;
-                    top: 4.3rem;
-                    right: 0;
+                    gap: 1rem;
+                    top: 3rem;
+                    right: -0.5rem;
                     background-color: black;
                     padding: 1rem 1.5rem;
                     border-radius: 0.5rem;
@@ -235,33 +246,29 @@ onMounted(() => {
                         color: #FF5529;
                     }
 
-                    a {
-                        margin-bottom: 1rem;
+                    .sub-menu-item {
                         color: white;
 
                         &:active {
-                            color: #FF5529; // Change to your desired hover color
-                        }
-
-                        &:last-child {
-                            margin-bottom: 0;
+                            color: #FF5529;
                         }
                     }
                 }
             }
 
 
-            a {
-                font-size: 1rem;
-                color: #59413C;
-                text-decoration: none;
+            
 
-                &:hover {
-                    cursor: pointer;
-                    color: black; // Change to your desired hover color
+            @media screen and (max-width: 1024px) {
+                width: 70%;
+                padding-right: 0;
+                gap: 0.5rem;
+
+                .item-box {
+                    gap: 0.5rem;
                 }
+                
             }
-
 
 
             @media screen and (max-width: 769px) {
@@ -271,15 +278,15 @@ onMounted(() => {
                     display: none;
                 }
 
-                .menu {
+                .sub-menu-box {
                     display: flex;
-                    ;
                 }
             }
+
+            @media screen and (max-width: 468px) {
+                display: none;
+            }
         }
-
-
-
     }
 
     .menu-section-scroll {
@@ -287,19 +294,18 @@ onMounted(() => {
         transition: background-color 0.3s ease-in-out;
 
 
-        .logo-box {
+        .logo-container {
 
             .logo-link {
 
-
-                h2 {
+                .logo-title {
                     color: white;
                 }
             }
         }
 
-        .other-menu {
-            a {
+        .menu-box {
+            .menu-item {
                 color: white;
 
                 &:hover {
@@ -312,12 +318,12 @@ onMounted(() => {
                 color: #FF5529;
             }
 
-            .menu {
+            .sub-menu-box {
                 font-size: 1rem;
                 color: white;
                 text-decoration: none;
 
-                .menu-item-box {
+                .sub-menu-item-box {
                     .active {
                         color: #FF5529 !important;
                     }

@@ -6,11 +6,11 @@
                 <p><span class="title">主辦單位:</span>中國醫藥大學、中國醫藥大學附設醫院、中華民國乳癌教育暨防治學會</p>
                 <p><span class="title">指導單位:</span>台灣乳房醫學會、台灣外科醫學會</p>
                 <div>
-                    <p><span class="title">會議時間:</span>2024年06月22日(六)，上午09:00 - 下午06:05
+                    <p><span class="title">會議時間:</span>2025年06月28日(六)，上午09:00 - 下午06:05
                     </p>
                     <p class="time">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        2024年06月23日(日)，上午08:50 - 下午12:10</p>
+                        2025年06月29日(日)，上午08:50 - 下午12:10</p>
                 </div>
                 <p><span class="title">會議地點:</span>中國醫藥大學水湳校區 卓越大樓B2 國際會議廳 (406台中市北屯區經貿路一段100號)</p>
             </div>
