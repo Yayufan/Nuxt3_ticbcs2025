@@ -1,8 +1,8 @@
 <template>
      <div class="title-section">
                 <p class="title">
-                    <!-- {{ props.title }} -->
-                      Coming Soon
+                    {{ props.title }}
+                      <!-- Coming Soon -->
                 </p>
             </div>
 </template>
@@ -13,7 +13,7 @@
 </script>
 <style lang="scss" scoped>
  .title-section {
-        margin-top: 1rem;
+        margin: 2rem 0;
         text-align: center;
         position: relative;
 

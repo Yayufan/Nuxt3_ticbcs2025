@@ -1,5 +1,6 @@
 <template>
     <div class="common-section">
+        <Title title="贊助廠商"></Title>
         <h1 class="title">感謝下列廠商熱情贊助!!</h1>
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
         <div v-for="(group, groupIndex) in groupedImages" :key="groupIndex" class="image-group">
@@ -14,7 +15,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import Title from '@/components/layout/Title.vue';
 
 const modules = import.meta.glob('../assets/img/ticbcs_sponsor_logo/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });
 
