@@ -2,6 +2,7 @@
     <div>
         <main class="common-section">
             <Banner />
+            <Title title="研討會報名"></Title>
 
             <div class="title-section">
                 <!-- <h1 class="title">Registration Now</h1> -->
@@ -136,6 +137,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { Lock, Message } from '@element-plus/icons-vue'
 
 import Banner from '@/components/layout/Banner.vue';
+import Title from '@/components/layout/Title.vue';
 
 
 

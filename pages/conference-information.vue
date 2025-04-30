@@ -1,7 +1,8 @@
 <template>
     <div class="common-section">
         <div class="meeting-info">
-            <h1 class="title">研討會資訊</h1>
+            <!-- <h1 class="title">研討會資訊</h1> -->
+             <Title title="研討會資訊"></Title>
             <div class="meeting-info-box">
                 <p><span class="title">主辦單位:</span>中國醫藥大學、中國醫藥大學附設醫院、中華民國乳癌教育暨防治學會</p>
                 <p><span class="title">指導單位:</span>台灣乳房醫學會、台灣外科醫學會</p>
@@ -45,6 +46,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import Title from '@/components/layout/Title.vue';
 
 </script>
 <style lang="scss" scoped>
